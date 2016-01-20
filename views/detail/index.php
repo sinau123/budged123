@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="modal-body">
             <div class="form-group field-detailmodel-tgl required">
                 <label class="control-label" for="detailmodel-tgl">Tanggal</label>
-                <input type="text" id="detailmodel-tgl" class="form-control datepicker" name="DetailModel[tgl]">
+                <input type="text" id="detailmodel-tgl" value="<?= date("Y-m-d") ?>" class="form-control datepicker" name="DetailModel[tgl]">
 
                 <div class="help-block"></div>
             </div>
