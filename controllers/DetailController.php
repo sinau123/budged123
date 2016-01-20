@@ -113,7 +113,7 @@ class DetailController extends Controller
      */
     public function actionAdd()
     {
-        $input = Yii::$app->request->post('DetailModel')
+        $input = Yii::$app->request->post('DetailModel');
         $model = new DetailModel();
 
         // if ($model->load(Yii::$app->request->post()) && $model->save()) {
