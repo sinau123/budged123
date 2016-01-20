@@ -13,6 +13,7 @@ use yii\data\ActiveDataProvider;
 /**
  * DetailController implements the CRUD actions for DetailModel model.
  */
+
 class DetailController extends Controller
 {
     public function behaviors()
