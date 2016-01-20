@@ -8,5 +8,5 @@ $config =  [
     'password' => 'denis',
     'charset' => 'utf8',
 ];
-@include 'db.overrde.php';
+@include 'db.override.php';
 return $config;
