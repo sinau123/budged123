@@ -21,8 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::button('Tambah Data',['class' => 'btn btn-success','data-toggle'=>'modal', 'data-target'=>'#j-modal-detail']) ?>
     </p>
-    <div class="table-small">
     <?php Pjax::begin(['id'=> 'pjax-detail']); ?>
+    <div class="table-small">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         // 'filterModel' => $searchModel,
@@ -62,8 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'showFooter'=>TRUE,
         'footerRowOptions' => ['class'=>'right','style'=>'font-weight:bold'],
     ]); ?>
-    <?php Pjax::end(); ?>
     </div>
+    <?php Pjax::end(); ?>
 </div>
 
 <!-- Modal -->
@@ -86,14 +86,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <hr>
                 <div class="form-group field-detailmodel-jenis required">
                     <label class="control-label" for="detailmodel-jenis">Item Pengeluaran</label>
-                    <input type="text" id="detailmodel-jenis" class="form-control" name="DetailModel[jenis][]" maxlength="25">
+                    <input type="text" class="form-control detailmodel-jenis" name="DetailModel[jenis][]">
 
                     <div class="help-block"></div>
                 </div>
                 <div class="form-group field-detailmodel-jml required">
                     <label class="control-label" for="detailmodel-jml">Biaya</label>
                     <input type="text" class="form-control j-format-biaya" name="format_biaya[]">
-                    <input type="hidden" name="DetailModel[jml][]" id="detailmodel-jml" class="j-biaya-value">
+                    <input type="hidden" name="DetailModel[jml][]" id="" class="j-biaya-value detailmodel-jml">
 
                     <div class="help-block"></div>
                 </div>
@@ -112,18 +112,23 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div id="clone" style="display:none">
-    <hr>
-    <div class="form-group field-detailmodel-jenis required">
-        <label class="control-label" for="detailmodel-jenis">Item Pengeluaran</label>
-        <input type="text" id="detailmodel-jenis" class="form-control" name="DetailModel[jenis][]" maxlength="25">
-
-        <div class="help-block"></div>
-    </div>
-    <div class="form-group field-detailmodel-jml required">
-        <label class="control-label" for="detailmodel-jml">Biaya</label>
-        <input type="text" class="form-control j-format-biaya" name="format_biaya[]">
-        <input type="hidden" name="DetailModel[jml][]" id="detailmodel-jml" class="j-biaya-value">
-
-        <div class="help-block"></div>
+    <div class="j-form-todelete">
+        <hr>
+        <div class="form-group field-detailmodel-jenis required" style="position:relative">
+            <div class="form-delete j-delete-form" data-toggle="tooltip" data-placement="right" title="hapus">
+                <div class="close-sign">&times;</div>
+            </div>
+            <label class="control-label" for="detailmodel-jenis">Item Pengeluaran</label>
+            <input type="text" class="detailmodel-jenis form-control" name="DetailModel[jenis][]">
+    
+            <div class="help-block"></div>
+        </div>
+        <div class="form-group field-detailmodel-jml required">
+            <label class="control-label" for="detailmodel-jml">Biaya</label>
+            <input type="text" class="form-control j-format-biaya" name="format_biaya[]">
+            <input type="hidden" name="DetailModel[jml][]" class="j-biaya-value detailmodel-jml">
+    
+            <div class="help-block"></div>
+        </div>
     </div>
 </div>
