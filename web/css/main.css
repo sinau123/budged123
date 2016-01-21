@@ -21,3 +21,21 @@ th td {
 a:hover {
   text-decoration: none;
 }
+form .form-delete {
+  position: absolute;
+  background-color: #5BC0DE;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+form .form-delete:hover {
+  background-color: #555;
+}
+form .form-delete .close-sign {
+  font-size: 20px;
+  font-weight: bold;
+  margin: -4px 0 0 4px;
+  color: white;
+}

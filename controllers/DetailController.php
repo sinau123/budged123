@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
+use yii\db\QueryBuilder;
 
 /**
  * DetailController implements the CRUD actions for DetailModel model.
@@ -115,6 +117,27 @@ class DetailController extends Controller
     {
         $input = Yii::$app->request->post('DetailModel');
         $model = new DetailModel();
+        
+        $model->tgl = $input['tgl'];
+        
+        if(!empty($input['jenis'])){
+            foreach($input['jenis'] as $index=>$item){
+                // $data[$index]['jenis'] = $item;
+                // $data[$index]['jml'] = $input['jml'][$index]; 
+                // $data[$index]['tgl'] = $input['tgl'];
+                $data[$index][0] = $item;
+                $data[$index][1] = $input['jml'][$index]; 
+                $data[$index][2] = $input['tgl'];
+            }
+            
+            $insert =  Yii::$app->db->createCommand()->batchInsert('detail', ['jenis','jml','tgl'],$data)->execute();
+
+            
+        }
+        
+        // foreach($input['jml'] as $index=>$item){
+        //     $data[$index]['jml'] = $item; 
+        // }
 
         // if ($model->load(Yii::$app->request->post()) && $model->save()) {
         //     return $this->redirect(['view', 'id' => $model->id]);
@@ -123,7 +146,7 @@ class DetailController extends Controller
         //         'model' => $model,
         //     ]);
         // }
-        var_dump(Yii::$app->request->post('DetailModel'));
+        // var_dump($data);
     }
 
     /**

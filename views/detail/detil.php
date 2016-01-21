@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\FunctionModel;
 use app\models\DetailModel;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DetailSearch */
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Detail Model', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php Pjax::begin(['id'=> 'pjax-detail']); ?>
     <div class="table-medium">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -47,5 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'footerRowOptions' => ['class'=>'right','style'=>'font-weight:bold'],
     ]); ?>
     </div>
+    <?php Pjax::end(); ?>
 
 </div>
