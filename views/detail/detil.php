@@ -24,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Detail Model', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <div id="j-delete-alert" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+        <button type="button" class="close" aria-label="Close"><span id="j-close-alert" aria-hidden="true">&times;</span></button>
+        <strong>Info!</strong> Data berhasil dihapus.
+    </div>
     <?php Pjax::begin(['id'=> 'pjax-detail']); ?>
     <div class="table-medium">
     <?= GridView::widget([
@@ -43,6 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             ['class' => 'yii\grid\ActionColumn',
+                'template' => '{hapus}',
+                'buttons' => [
+                    'hapus' => function ($url,$model,$key) {
+                                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', Yii::$app->urlManager->createUrl('detail/delete'),
+                                        ['title'=>'hapus','class'=>'j-delete','data-id'=>$model->id]);
+                    },
+                ],
              'contentOptions' => ['class'=>'middle']],
         ],
         'showFooter'=>TRUE,

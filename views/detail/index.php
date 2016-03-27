@@ -21,6 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::button('Tambah Data',['class' => 'btn btn-success','data-toggle'=>'modal', 'data-target'=>'#j-modal-detail']) ?>
     </p>
+    <div id="j-sukses-alert" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+        <button type="button" class="close" aria-label="Close"><span id="j-close-alert" aria-hidden="true">&times;</span></button>
+        <strong>Info!</strong> Data berhasil disimpan.
+    </div>
     <?php Pjax::begin(['id'=> 'pjax-detail']); ?>
     <div class="table-small">
     <?= GridView::widget([

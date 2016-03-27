@@ -119,34 +119,21 @@ class DetailController extends Controller
         $model = new DetailModel();
         
         $model->tgl = $input['tgl'];
+        $result['status'] = false;
+        $result['msg'] = "maaf terjadi kesalahan, data gagal disimpan";
         
         if(!empty($input['jenis'])){
             foreach($input['jenis'] as $index=>$item){
-                // $data[$index]['jenis'] = $item;
-                // $data[$index]['jml'] = $input['jml'][$index]; 
-                // $data[$index]['tgl'] = $input['tgl'];
                 $data[$index][0] = $item;
                 $data[$index][1] = $input['jml'][$index]; 
                 $data[$index][2] = $input['tgl'];
+            }            
+            if($insert =  Yii::$app->db->createCommand()->batchInsert('detail', ['jenis','jml','tgl'],$data)->execute()){ 
+                $result['status'] = true;
+                $result['msg'] = "data berhasil disimpan";
             }
-            
-            $insert =  Yii::$app->db->createCommand()->batchInsert('detail', ['jenis','jml','tgl'],$data)->execute();
-
-            
         }
-        
-        // foreach($input['jml'] as $index=>$item){
-        //     $data[$index]['jml'] = $item; 
-        // }
-
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // } else {
-        //     return $this->render('create', [
-        //         'model' => $model,
-        //     ]);
-        // }
-        // var_dump($data);
+        echo json_encode($result);
     }
 
     /**
@@ -174,11 +161,16 @@ class DetailController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $id = Yii::$app->request->post('id');
+        
+        $result['status'] = false;
+        $result['msg'] = "maaf terjadi kesalahan, data gagal disimpan";
+        if($this->findModel($id)->delete()){
+            $result['status'] = true;
+        }
+        echo json_encode($result);
     }
 
     /**
